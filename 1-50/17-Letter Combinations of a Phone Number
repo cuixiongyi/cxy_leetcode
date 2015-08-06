@@ -1,0 +1,24 @@
+/*
+ * This is a iterative approach
+ */
+
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        if (digits.empty())
+            return vector<string> ();
+        vector<string> ret{""};
+        vector<string> map {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        for (int ii = 0; ii < digits.size(); ++ii)
+        {
+            vector<string> vtmp;
+            const string& str = map[digits[ii]-'0'];
+            for (int jj = 0; jj < ret.size(); ++jj)
+                for (int kk = 0; kk < str.size(); ++kk)
+                    vtmp.push_back(ret[jj]+str[kk]);
+            
+            ret = vtmp;
+        }
+        return ret;
+    }
+};
